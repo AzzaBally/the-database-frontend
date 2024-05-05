@@ -1,9 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import App from "./components/App";
+import Login from "./components/Pages/Login";
+import ShowItem from "./components/Pages/ShowItem";
+import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import { Routes, Route, HashRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -13,6 +15,9 @@ root.render(
     <HashRouter>
       <Routes>
         <Route path="/" element={<App />} />
+        <Route path="/home" element={<App />} />
+        <Route path="/about/:id" element={<ShowItem />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </HashRouter>
   </React.StrictMode>
