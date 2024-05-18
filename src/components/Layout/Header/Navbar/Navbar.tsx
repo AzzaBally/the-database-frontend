@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { mediaTypes } from "../../../../constants/objectConstants";
 
 const NavbarContainer = styled.div`
   ul {
@@ -107,10 +108,11 @@ const ChildExpandableContentContainer = styled.div`
 `;
 
 interface NavbarProps {
+  mediaType: string | undefined;
   isAuthenticated: boolean;
 }
 
-export default function Navbar({ isAuthenticated }: NavbarProps) {
+export default function Navbar({ mediaType, isAuthenticated }: NavbarProps) {
   return (
     <>
       <div>
@@ -119,78 +121,87 @@ export default function Navbar({ isAuthenticated }: NavbarProps) {
           <ul>
             <ExpandableListItem>
               <LinkItem
-                href="/the-database-frontend/#/home"
+                onClick={(e) => e.preventDefault()}
                 focus_background_color="red"
               >
                 Home Page
               </LinkItem>
               <ExpandableContentContainer>
-                <ChildLink href="{% url 'personaldb:anime_home' %}">
+                <ChildLink href="/the-database-frontend/#/anime/homepage">
                   Anime
                 </ChildLink>
-                <ChildLink href="{% url 'personaldb:tv_series_home' %}">
+                <ChildLink href="/the-database-frontend/#/tv_series/homepage">
                   TV Series
                 </ChildLink>
-                <ChildLink href="{% url 'personaldb:game_home' %}">
+                <ChildLink href="/the-database-frontend/#/video_games/homepage">
                   Video Games
                 </ChildLink>
               </ExpandableContentContainer>
             </ExpandableListItem>
-
-            <ExpandableListItem>
-              <LinkItem
-                onClick={(e) => e.preventDefault()}
-                focus_background_color="red"
-              >
-                Search
-              </LinkItem>
-              <ExpandableContentContainer>
-                <ChildLink href="{% url 'personaldb:search' 'name' %}">
-                  Name
-                </ChildLink>
-                <ChildLink href="{% url 'personaldb:search' 'genre' %}">
-                  Genre
-                </ChildLink>
-                <ul>
-                  <ExpandableListItem
-                    float="unset"
-                    focus_background_color="#444"
-                  >
-                    <ExpandableLinkItem onClick={(e) => e.preventDefault()}>
-                      Rating
-                    </ExpandableLinkItem>
-                    <ChildExpandableContentContainer>
-                      {[1, 2, 3, 4, 5].map((rating) => (
-                        <ChildLink
-                          href={`{% url 'personaldb:rating_search' '${rating}' %}`}
-                          background_color="#444"
-                          focus_background_color="#555"
-                          key={rating}
-                        >
-                          {rating}
-                        </ChildLink>
-                      ))}
-                    </ChildExpandableContentContainer>
-                  </ExpandableListItem>
-                </ul>
-              </ExpandableContentContainer>
-            </ExpandableListItem>
+            {mediaType && mediaType === "anime" && (
+              <ExpandableListItem>
+                <LinkItem
+                  onClick={(e) => e.preventDefault()}
+                  focus_background_color="red"
+                >
+                  Search
+                </LinkItem>
+                <ExpandableContentContainer>
+                  <ChildLink href="{% url 'personaldb:search' 'name' %}">
+                    Name
+                  </ChildLink>
+                  <ChildLink href="{% url 'personaldb:search' 'genre' %}">
+                    Genre
+                  </ChildLink>
+                  <ul>
+                    <ExpandableListItem
+                      float="unset"
+                      focus_background_color="#444"
+                    >
+                      <ExpandableLinkItem onClick={(e) => e.preventDefault()}>
+                        Rating
+                      </ExpandableLinkItem>
+                      <ChildExpandableContentContainer>
+                        {[1, 2, 3, 4, 5].map((rating) => (
+                          <ChildLink
+                            href={`{% url 'personaldb:rating_search' '${rating}' %}`}
+                            background_color="#444"
+                            focus_background_color="#555"
+                            key={rating}
+                          >
+                            {rating}
+                          </ChildLink>
+                        ))}
+                      </ChildExpandableContentContainer>
+                    </ExpandableListItem>
+                  </ul>
+                </ExpandableContentContainer>
+              </ExpandableListItem>
+            )}
             <ListItem>
-              <LinkItem href="{% url 'personaldb:timeline' '0-18' %}">
+              <LinkItem href="/the-database-frontend/#/timeline">
                 Timeline
               </LinkItem>
             </ListItem>
 
-            <ListItem>
-              <LinkItem href="{% url 'personaldb:random_anime' %}">
-                Random Anime
-              </LinkItem>
-            </ListItem>
-            <ListItem>
-              <LinkItem href="{% url 'personaldb:add_anime' %}">
-                Add Anime
-              </LinkItem>
-            </ListItem>
+            {mediaType && (
+              <>
+                <ListItem>
+                  <LinkItem
+                    href={`/the-database-frontend/#/${mediaType}/view/random`}
+                  >
+                    Random {mediaTypes[mediaType]}
+                  </LinkItem>
+                </ListItem>
+                <ListItem>
+                  <LinkItem
+                    href={`/the-database-frontend/#/${mediaType}/view/random`}
+                  >
+                    Add {mediaTypes[mediaType]}
+                  </LinkItem>
+                </ListItem>
+              </>
+            )}
             <ListItem>
               <LinkItem href="https://myanimelist.net/" target="_blank">
                 MyAnimeList

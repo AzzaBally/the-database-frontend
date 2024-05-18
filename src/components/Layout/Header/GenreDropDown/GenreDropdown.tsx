@@ -1,10 +1,19 @@
 import styled from "styled-components";
+import { buildGenreSearchUrl } from "../../../../utils/urlUtils";
 
 const DropdownContainer = styled.div`
   position: absolute;
   top: 19px;
   right: 20px;
   display: inline-block;
+
+  > div {
+    display: none;
+  }
+
+  &:focus-within > div {
+    display: block;
+  }
 `;
 
 const GenreDropdownButton = styled.button`
@@ -23,18 +32,9 @@ const GenreDropdownButton = styled.button`
   &:focus {
     background-color: red;
   }
-
-  + div {
-    display: none;
-  }
-
-  &:focus + div {
-    display: block;
-  }
 `;
 
 const GenreDropdownOptionsContainer = styled.div`
-  display: none;
   position: absolute;
   background-color: #333;
   margin-left: 3px;
@@ -58,28 +58,32 @@ const GenreDropdownOptionsContainer = styled.div`
 `;
 
 interface GenreDropdownProps {
-  genreList: Record<string, string>[];
+  genreList: string[] | undefined;
 }
 export default function GenreDropdown({ genreList }: GenreDropdownProps) {
   return (
     <>
-      <DropdownContainer>
-        <GenreDropdownButton
-          onClick={() => console.log("abc") /**genreDropdown()*/}
-        >
-          Genre Search
-        </GenreDropdownButton>
-        <GenreDropdownOptionsContainer>
-          {genreList.map((listItem) => (
-            <a
-              href="{% url 'personaldb:genre_search' url_genre %}"
-              key={listItem.displayName}
-            >
-              {listItem.displayName}
-            </a>
-          ))}
-        </GenreDropdownOptionsContainer>
-      </DropdownContainer>
+      {genreList && (
+        <DropdownContainer id="dropdownContainer">
+          <GenreDropdownButton
+            onClick={() => {
+              document.getElementById("dropdownContainer")?.focus();
+            }}
+          >
+            Genre Search
+          </GenreDropdownButton>
+          <GenreDropdownOptionsContainer>
+            {genreList.map((genre) => (
+              <a
+                href={buildGenreSearchUrl(genre)}
+                key={genre}
+              >
+                {genre}
+              </a>
+            ))}
+          </GenreDropdownOptionsContainer>
+        </DropdownContainer>
+      )}
     </>
   );
 }

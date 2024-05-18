@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { HashRouter, Route, Routes } from "react-router-dom";
-import App from "./components/App";
+import Homepage from "./components/Pages/Homepage";
 import Login from "./components/Pages/Login";
 import ShowItem from "./components/Pages/ShowItem";
-import "./index.css";
 import reportWebVitals from "./reportWebVitals";
+import Timeline from "./components/Pages/Timeline";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -14,9 +14,12 @@ root.render(
   <React.StrictMode>
     <HashRouter>
       <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/home" element={<App />} />
-        <Route path="/about/:id" element={<ShowItem />} />
+        <Route path="/" element={<Homepage />} />
+        <Route path="/:mediaType/homepage" element={<Homepage />} />
+        <Route path="/timeline" element={<Timeline />} />
+        <Route path="/:mediaType/view/:id" element={<ShowItem />} />
+        <Route path="/:mediaType/add" element={<ShowItem />} />
+        <Route path="/:mediaType/update/:id" element={<ShowItem />} />
         <Route path="/login" element={<Login />} />
       </Routes>
     </HashRouter>

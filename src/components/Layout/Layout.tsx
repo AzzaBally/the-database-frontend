@@ -38,22 +38,24 @@ const WidthContainer = styled("div")`
 `;
 
 interface LayoutProps {
-  isLoginPage?: boolean;
+  mediaType?: string;
+  pageType?: string;
+  genreList?: string[];
   children: React.ReactNode;
 }
 
-export default function Layout({ isLoginPage, children }: LayoutProps) {
+export default function Layout({ mediaType, pageType, genreList, children }: LayoutProps) {
   let isAuthenticated = Cookies.get("djangoAuth");
 
   return (
     <LayoutContainer>
-      <Header
-        genreList={[{ displayName: "a" }, { displayName: "b" }]}
-        isAuthenticated={!!isAuthenticated}
-      />
+      <Header mediaType={mediaType} genreList={genreList} isAuthenticated={!!isAuthenticated} />
       <Main>
         <WidthContainer>
-          <AuthenticationCheck isAuthenticated={!!isAuthenticated} isLoginPage={isLoginPage}>
+          <AuthenticationCheck
+            isAuthenticated={!!isAuthenticated}
+            isLoginPage={pageType === "login"}
+          >
             {children}
           </AuthenticationCheck>
         </WidthContainer>
