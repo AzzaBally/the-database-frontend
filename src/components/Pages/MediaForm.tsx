@@ -6,18 +6,18 @@ import {
   showItemEndpoint,
 } from "../../constants/endpointConstants";
 import { formTypes, mediaTypes } from "../../constants/objectConstants";
+import {
+  animeMediaFormValidator,
+  baseMediaFormValidator,
+} from "../../constants/zodConstants";
 import { authenticatedFetch } from "../../utils/fetchUtils";
 import { Button } from "../Button";
+import ErrorMessage from "../ErrorMessage";
 import { LabelText } from "../LabelText";
 import Layout from "../Layout/Layout";
 import { PageTitle } from "../PageTitle";
-import { TextInput } from "../TextInput";
-import {
-  baseMediaFormValidator,
-  animeMediaFormValidator,
-} from "../../constants/zodConstants";
-import ErrorMessage from "../ErrorMessage";
 import { Paragraph } from "../Paragraph";
+import { TextInput } from "../TextInput";
 
 const LongTextInput = styled(TextInput)`
   width: 99%;
@@ -144,6 +144,7 @@ export default function MediaForm() {
           formValidation.data
         );
       } else {
+        setShowConfirmationForm(false);
         setFormErrors({
           name: undefined,
           newWatchDate: undefined,
@@ -181,6 +182,7 @@ export default function MediaForm() {
                     type="text"
                     placeholder="Enter Name"
                     name="nameInput"
+                    value={mediaForm.name}
                     $error={formErrors.name}
                     onChange={(e) =>
                       setMediaForm((prevMediaForm) => {
@@ -203,6 +205,7 @@ export default function MediaForm() {
                 type="text"
                 placeholder="YYYY-MM-DD"
                 name="watchDateInput"
+                value={mediaForm.newWatchDate}
                 $error={formErrors.newWatchDate}
                 onChange={(e) =>
                   setMediaForm((prevMediaForm) => {
@@ -224,6 +227,9 @@ export default function MediaForm() {
                           <input
                             type="checkbox"
                             name={`watchDateRemoval${index}`}
+                            checked={mediaForm?.watchDatesToRemove?.includes(
+                              watchDate?.watchDate
+                            )}
                             onChange={(e) =>
                               setMediaForm((prevMediaForm) => {
                                 return {
