@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/the-database-frontend/static/js/main.805e6ca3.js",
+    "main.js": "/the-database-frontend/static/js/main.180a0a80.js",
     "static/js/453.f966017c.chunk.js": "/the-database-frontend/static/js/453.f966017c.chunk.js",
     "index.html": "/the-database-frontend/index.html",
-    "main.805e6ca3.js.map": "/the-database-frontend/static/js/main.805e6ca3.js.map",
+    "main.180a0a80.js.map": "/the-database-frontend/static/js/main.180a0a80.js.map",
     "453.f966017c.chunk.js.map": "/the-database-frontend/static/js/453.f966017c.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.805e6ca3.js"
+    "static/js/main.180a0a80.js"
   ]
 }
