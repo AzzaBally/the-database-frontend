@@ -46,7 +46,7 @@ export const baseMediaFormValidator = z.object({
 });
 
 export const animeMediaFormValidator = baseMediaFormValidator.extend({
-  genres: z.string().regex(/^([a-zA-Z ]+\/)*[a-zA-Z ]+$/, {
+  genres: z.string().regex(/^([a-zA-Z -]+\/)*[a-zA-Z -]+$/, {
     message: "Enter a Valid List of Genres",
   }),
   rating: z

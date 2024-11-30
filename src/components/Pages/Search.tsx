@@ -76,7 +76,7 @@ export default function Search() {
         }
         return (
           animeChecks &&
-          item.name.toLowerCase().includes(searchForm.name) &&
+          item.name.toLowerCase().includes(searchForm.name.toLowerCase()) &&
           item.timesWatched >= searchForm.leastTimesWatched
         );
       })
