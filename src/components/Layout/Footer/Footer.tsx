@@ -16,7 +16,7 @@ export default function Footer() {
         </StyledParagraph>
         <StyledParagraph>
           Current Version: Date of Development: 05/05/2024 | Date of Release:
-          ??/??/????
+          30/11/2024
         </StyledParagraph>
       </div>
     </>

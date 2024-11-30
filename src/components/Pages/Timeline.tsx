@@ -6,13 +6,14 @@ import {
 } from "../../constants/endpointConstants";
 import { authenticatedFetch } from "../../utils/fetchUtils";
 import { Button } from "../Button";
-import { GridDisplayImage } from "../GridDisplay/GridDisplayImage";
 import { GridDisplayContainer } from "../GridDisplay/GridDisplayContainer";
+import { GridDisplayImage } from "../GridDisplay/GridDisplayImage";
 import { GridDisplayTotalText } from "../GridDisplay/GridDisplayTotalText";
 import Layout from "../Layout/Layout";
 import { PageTitle } from "../PageTitle";
 
 export const StyledButton = styled(Button)`
+  width: 200px;
   margin-top: 15px;
   margin-right: 10px;
 `;

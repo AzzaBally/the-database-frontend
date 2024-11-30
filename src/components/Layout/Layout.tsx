@@ -3,6 +3,7 @@ import styled from "styled-components";
 import AuthenticationCheck from "./AuthenticationCheck/AuthenticationCheck";
 import Footer from "./Footer/Footer";
 import Header from "./Header/Header";
+import { cookieConfiguration } from "../../constants/objectConstants";
 
 const LayoutContainer = styled("div")`
   padding-left: 20px;
@@ -45,7 +46,7 @@ interface LayoutProps {
 }
 
 export default function Layout({ mediaType, pageType, genreList, children }: LayoutProps) {
-  let isAuthenticated = Cookies.get("djangoAuth");
+  let isAuthenticated = Cookies.get(cookieConfiguration.name);
 
   return (
     <LayoutContainer>

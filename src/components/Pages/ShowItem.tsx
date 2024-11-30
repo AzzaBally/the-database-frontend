@@ -5,13 +5,13 @@ import {
   imageEndpoint,
   showItemEndpoint,
 } from "../../constants/endpointConstants";
-import { authenticatedFetch } from "../../utils/fetchUtils";
-import Layout from "../Layout/Layout";
-import { PageTitle } from "../PageTitle";
-import { Column, ColumnContainer } from "../Column";
-import { buildGenreSearchUrl } from "../../utils/urlUtils";
-import { Link } from "../Link";
 import { mediaTypes } from "../../constants/objectConstants";
+import { authenticatedFetch } from "../../utils/fetchUtils";
+import { buildGenreSearchUrl } from "../../utils/urlUtils";
+import { Column, ColumnContainer } from "../Column";
+import Layout from "../Layout/Layout";
+import { Link } from "../Link";
+import { PageTitle } from "../PageTitle";
 
 const StyledImage = styled.img`
   border: solid;
@@ -59,7 +59,7 @@ export default function ShowItem() {
       <div>
         {showItemResponse?.mediaData && (
           <ColumnContainer>
-            <Column flex="25%" minwidth="250px">
+            <Column $flex="25%" $minWidth="250px">
               <StyledImage
                 src={imageEndpoint.replace(
                   "{{IMAGE_LOCATION}}",
@@ -67,11 +67,11 @@ export default function ShowItem() {
                 )}
               />
             </Column>
-            <Column flex="75%">
+            <Column $flex="75%">
               <PageTitle>{showItemResponse.mediaData.name}</PageTitle>
               <hr />
               <StyledColumnContainer>
-                <Column flex="90%">
+                <Column $flex="90%">
                   {showItemResponse.mediaData.genres && (
                     <>
                       <span>Genres: </span>
@@ -116,7 +116,7 @@ export default function ShowItem() {
                     </Link>
                   )}
                 </Column>
-                <Column flex="10%">
+                <Column $flex="10%">
                   <StyledLink
                     href={`/the-database-frontend/#/${showItemResponse.mediaData.mediaType}/update/${showItemResponse.mediaData.id}`}
                   >

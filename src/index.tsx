@@ -6,6 +6,8 @@ import Login from "./components/Pages/Login";
 import ShowItem from "./components/Pages/ShowItem";
 import reportWebVitals from "./reportWebVitals";
 import Timeline from "./components/Pages/Timeline";
+import MediaForm from "./components/Pages/MediaForm";
+import Search from "./components/Pages/Search";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -18,8 +20,8 @@ root.render(
         <Route path="/:mediaType/homepage" element={<Homepage />} />
         <Route path="/timeline" element={<Timeline />} />
         <Route path="/:mediaType/view/:id" element={<ShowItem />} />
-        <Route path="/:mediaType/add" element={<ShowItem />} />
-        <Route path="/:mediaType/update/:id" element={<ShowItem />} />
+        <Route path="/:mediaType/:formType/:id?" element={<MediaForm />} />
+        <Route path="/search/:query?" element={<Search />} />
         <Route path="/login" element={<Login />} />
       </Routes>
     </HashRouter>

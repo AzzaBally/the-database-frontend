@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 interface ColumnProps {
-  flex: string;
-  minwidth?: string;
+  $flex: string;
+  $minWidth?: string;
 }
 
 export const ColumnContainer = styled.div`
@@ -10,6 +10,6 @@ export const ColumnContainer = styled.div`
 `;
 
 export const Column = styled.div<ColumnProps> `
-  flex: ${(props) => props.flex};
-  min-width: ${(props) => (props.minwidth ? props.minwidth : "unset")};
+  flex: ${(props) => props.$flex};
+  min-width: ${(props) => (props.$minWidth ? props.$minWidth : "unset")};
 `;
