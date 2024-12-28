@@ -7,6 +7,7 @@ import {
 } from "../../constants/endpointConstants";
 import { mediaTypes } from "../../constants/objectConstants";
 import { authenticatedFetch } from "../../utils/fetchUtils";
+import { getDayWithSuffix } from "../../utils/formattingUtils";
 import { buildGenreSearchUrl } from "../../utils/urlUtils";
 import { Column, ColumnContainer } from "../Column";
 import Layout from "../Layout/Layout";
@@ -21,6 +22,10 @@ const StyledImage = styled.img`
 
 const StyledColumnContainer = styled(ColumnContainer)`
   margin: 25px;
+`;
+
+const StyledWatchDatesColumnContainer = styled(ColumnContainer)`
+  max-width: 280px;
 `;
 
 const StyledLink = styled(Link)`
@@ -99,7 +104,24 @@ export default function ShowItem() {
                         {showItemResponse.mediaData.watchDates.map(
                           (watchDate: Record<string, string>) => (
                             <li key={watchDate.watchDate}>
-                              {watchDate.watchDate}
+                              <StyledWatchDatesColumnContainer>
+                                <Column $flex="50%">
+                                  <b>
+                                    {`${new Date(
+                                      watchDate.watchDate
+                                    ).toLocaleString("default", {
+                                      month: "short",
+                                    })}. ${getDayWithSuffix(
+                                      new Date(watchDate.watchDate).getDate()
+                                    )} ${new Date(
+                                      watchDate.watchDate
+                                    ).getFullYear()}`}
+                                  </b>
+                                </Column>
+                                <Column $flex="50%">
+                                  {watchDate.watchDate}
+                                </Column>
+                              </StyledWatchDatesColumnContainer>
                             </li>
                           )
                         )}

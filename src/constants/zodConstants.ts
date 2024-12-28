@@ -10,7 +10,7 @@ export const baseMediaFormValidator = z.object({
   name: z
     .string()
     .min(1, { message: "Enter a Name" })
-    .regex(/^[a-zA-Z0-9!,() '?&.\":-]{0,256}$/, { message: "Invalid Name" }),
+    .regex(/^[a-zA-Z0-9!,() '?&.":-]{0,256}$/, { message: "Invalid Name" }),
   newWatchDate: z.preprocess(
     (data) => (data === "" ? undefined : data),
     z
